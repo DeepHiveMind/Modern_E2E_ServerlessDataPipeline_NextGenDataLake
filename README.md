@@ -1,7 +1,7 @@
 A quick rundown of Contents
 ===========================
 
-   * [Introduction- Modern E2E-ServerlessDataPipeline_NxtGenDataLake](#introduction)
+   * [Introduction- Modern E2E-ServerlessDataPipeline_NxtGenDataLake]
    * [The challenge of orchestrating a Modern Data Pipeline workflow](#The challenge of orchestrating a Modern Data Pipeline workflow)
    * [The Next Gen Modern Event Based Serverless Data/Information Supply chain pipeline architecture](#the-Modernetl-orchestration-architecture-and-events)
       * [Modeling the ETL orchestration workflow in AWS Step Functions](#Modern-DataPipeline-workflow-in-aws-step-functions)
@@ -36,29 +36,30 @@ Cloud hosted "Ingest, Collect, Transform, Load and Workflow orachasteration oper
 
  - How can we **orchestrate an ETL workflow** that involves a **"diverse set of ETL technologies"**? Such as 
 	 * AWS Glue, AWS DMS, Amazon EMR, 
-	 
 	 * AWS Lamda, AWS Step Functions state machines, 
-	 
 	 * Streams in Amazon Kinesis Data Streams, Delivery streams in Amazon Kinesis Data Firehose,
-	 
 	 * and other services support Log groups in Amazon CloudWatch Logs, [Amazon CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html), which we could use to chain ETL jobs together. 
  
  - How can we support **various types of Ingestion & collection** mechanisms? Such as
 	* API based ingestion
 	
-		** RESTful API/ OData API
+		---- RESTful API/ OData API
 		
-		** Python/ JAVA/ other language based API
+		---- Python/ JAVA/ other language based API
 		
-		** CCTV WebRTC or RTSP 
+		---- CCTV WebRTC or RTSP 
 		
-		** SMB/FTP/SFTP
+		---- SMB/FTP/SFTP
 		
 	* Event based ingestion
 	
-		---- telemetry data ingestion
+		---- Telemetry data ingestion
 		
 		---- IIoT protocols (MQTT/CoAP/ AMQP/ HTTP)
+		
+		---- Click Stream Data
+		
+		---- Application/ WebServer/ Security Events
 		
 	* Batch Data ingestion
 	
