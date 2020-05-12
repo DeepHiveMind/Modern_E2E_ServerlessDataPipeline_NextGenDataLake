@@ -74,22 +74,23 @@ Cloud hosted serverless, self scalable, secured, auto-scaled **"Ingest, Collect,
 	* CEP processing ETL jobs
 
   - How do we inject the **Data Trust** elements (make the data actionable | avoiding Data Swamp | Death Valley) in Data Pipeline? Such as 
-		--- Data Discovery / Schema registry
-		--- Data Lineage, 
-		--- Data Catalogue, 
-		--- Data Quality as DSL (for streaming/ batch both the pipelines), 
-		--- Master Data Governance, et al.
+		* Data Discovery / Schema registry
+		* Data Lineage, 
+		* Data Catalogue, 
+		* Data Quality as DSL (for streaming/ batch both the pipelines), 
+		* Master Data Governance, et al.
  
  - How to enable **consistent tracing/ Logging / Monitoring mechanism** for the overall ETL workflow's execution status?
  
  - How do we bake in **handling error scenarios** (restart & recover) overall ETL workflow's execution?
  
  - How to manage the ** NFR ** et al for those very many servivces engaged in such a Data Pipeline? Such as 
-	-- scalability, 
-	-- high availability, 
-	-- load balancing, 
-	-- Self-healing, 
-	-- security
+	* scalability, 
+	* high availability, 
+	* load balancing, 
+	* Self-healing, 
+	* security
+	
 		 --- Data security @ transit
 		 --- Data security @ rest
 		 --- Data RBAC/ ABAC in Synch with FiDM (Federated identity management)
