@@ -2,7 +2,8 @@ A quick rundown of Contents
 ===========================
 
    * [Introduction | Modern E2E-ServerlessDataPipeline_NxtGenDataLake]
-   * [The challenge of orchestrating a Modern Data Pipeline workflow]
+       * [The challenge of orchestrating a Modern Data Pipeline workflow]
+       * [The One-stop-shop as solution for aforementioned challenges using AWS PaaS]
    * [The Next Gen Modern Event Based Serverless Data/Information Supply chain pipeline architecture]
       * [Modeling the ETL orchestration workflow in AWS Step Functions](#Modern-DataPipeline-workflow-in-aws-step-functions)
       * [AWS CloudFormation templates](#aws-cloudformation-templates)
@@ -27,10 +28,13 @@ A quick rundown of Contents
   
 
 # Introduction| Modern E2E-ServerlessDataPipeline_NxtGenDataLake
-Cloud hosted serverless, self scalable, secured, auto-scaled **"Ingest, Collect, Transform, Load and Workflow orachasteration operations"** collectively form the backbone of any "Modern enterprise federatd Data Lake". It transforms raw data into useful datasets and, ultimately, into actionable insight. An Data/Information supply chain job typically reads data from one or more data sources, applies various transformations to the data, and then writes the results to a target where data is ready for consumption. 
+Cloud hosted serverless, self scalable, secured, auto-scaled **"Ingest, Collect, Transform, Load and Workflow orachasteration operations"** collectively form the backbone of any "Modern enterprise federatd Data Lake". A Next Gen Data/Information supply chain workflow typically reads data from one or more data sources, applies various transformations to the data, and then writes the results to a target where data is ready for consumption/ actionalable insights. But it's different vis-a-vis the traditional big data analytics pipeline in following manneer, as it offers
+        
+	* Modern 'Event Based', 'Serverless', 'Self scalable', 'Secured', 'Cloud Native', 'Trusted', Metadat driven Data/Information Supply chain pipeline architecture
+	* One stop solution for all the challenges of orchestrating a Modern Data Pipeline workflow
 
 
-# The challenge of orchestrating a Modern Data Pipeline workflow
+### The challenge of orchestrating a Modern Data Pipeline workflow
 
  - How can we **orchestrate an ETL workflow** that involves a **"diverse set of ETL technologies"**? Such as 
 	 * AWS Glue, AWS DMS, Amazon EMR, 
@@ -104,11 +108,22 @@ Cloud hosted serverless, self scalable, secured, auto-scaled **"Ingest, Collect,
 		 --- Right to forget, right to access, .. (GDPR/CCPA compliance)
  
 
-# The One-stop-shop as solution for aforementioned challenges using AWS PaaS
+### The One-stop-shop as solution for aforementioned challenges using AWS PaaS
 
-In this code sample, I show you how to use [AWS Step Functions](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html) and [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) for orchestrating multiple ETL jobs involving a diverse set of technologies in an arbitrarily-complex ETL workflow. AWS Step Functions is a web service that enables you to coordinate the components of distributed applications and microservices using visual workflows. You build applications from individual components. Each component performs a discrete function, or task, allowing you to scale and change applications quickly. Using AWS Step Functions also opens up opportunities for integrating other AWS or external services into your ETL flows. Let’s take an example ETL flow for illustration.
+In this code sample, following AWS PaaS services are chained together to serve the One-stop-shop solution:
 
-AWS offers [AWS Glue](https://aws.amazon.com/glue/), which is a service that helps author and deploy ETL jobs. AWS Glue is a fully managed extract, transform, and load service that makes it easy for customers to prepare and load their data for analytics. Other AWS Services also can be used to implement and manage ETL jobs. They include: [AWS Database Migration Service](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html) (AWS DMS), [Amazon EMR](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html) (using the Steps API), and even [Amazon Athena](https://docs.aws.amazon.com/athena/latest/ug/what-is.html).
+
+[AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) for orchestrating multiple ETL jobs involving a diverse set of technologies in an arbitrarily-complex ETL workflow. 
+
+[AWS Step Functions](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html). AWS Step Functions is a web service that enables you to coordinate the components of distributed applications and microservices using visual workflows. You build applications from individual components. Each component performs a discrete function, or task, allowing you to scale and change applications quickly. Using AWS Step Functions also opens up opportunities for integrating other AWS or external services into your ETL flows. Let’s take an example ETL flow for illustration.
+
+[AWS Glue](https://aws.amazon.com/glue/), which is a service that helps author and deploy ETL jobs. AWS Glue is a fully managed extract, transform, and load service that makes it easy for customers to prepare and load their data for analytics. 
+
+[AWS Database Migration Service](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html) (AWS DMS), 
+
+[Amazon EMR](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html) (using the Steps API),  
+
+[Amazon Athena](https://docs.aws.amazon.com/athena/latest/ug/what-is.html).
 
 
 
