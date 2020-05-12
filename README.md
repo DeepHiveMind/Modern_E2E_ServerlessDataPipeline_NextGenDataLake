@@ -45,15 +45,25 @@ Cloud hosted "Ingest, Collect, Transform, Load and Workflow orachasteration oper
  
  - How can we support **various types of Ingestion & collection** mechanisms? Such as
 	* API based ingestion
+	
 		** RESTful API/ OData API
+		
 		** Python/ JAVA/ other language based API
-		** CCTV WebRTC or RTSP feeds
+		
+		** CCTV WebRTC or RTSP 
+		
 		** SMB/FTP/SFTP
-	-- Event based ingestion
+		
+	* Event based ingestion
+	
 		---- telemetry data ingestion
-		---- IIoT protocols (MQTT/CoAP/
-	-- Batch Data ingestion
+		
+		---- IIoT protocols (MQTT/CoAP/ AMQP/ HTTP)
+		
+	* Batch Data ingestion
+	
 		---- file based batch data ingestion
+		
 		---- db based batch data ingestion
 		
  
