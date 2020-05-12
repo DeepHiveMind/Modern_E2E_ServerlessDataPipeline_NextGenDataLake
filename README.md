@@ -47,8 +47,11 @@ Cloud hosted serverless, self scalable, secured, auto-scaled **"Ingest, Collect,
 	* API based ingestion
 	
 		---- RESTful API/ OData API
+		
 		---- Python/ JAVA/ other language based API
+		
 		---- CCTV WebRTC or RTSP 
+		
 		---- SMB/FTP/SFTP
 		
 	* Event based ingestion
@@ -63,9 +66,9 @@ Cloud hosted serverless, self scalable, secured, auto-scaled **"Ingest, Collect,
 		
 	* Batch Data ingestion
 	
-		---- file based batch data ingestion
+		---- File based batch data ingestion
 		
-		---- db based batch data ingestion
+		---- DB based batch data ingestion
 		
  
  - How to **chain multiple ETL jobs** together? Such as 
