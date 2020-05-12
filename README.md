@@ -2,8 +2,9 @@ A quick rundown of Contents
 ===========================
 
    * [Introduction | Modern E2E-ServerlessDataPipeline_NxtGenDataLake]
-       * [The challenge of orchestrating a Modern Data Pipeline workflow]
-       * [The One-stop-shop as solution for aforementioned challenges using AWS PaaS]
+       * [The challenge of orchestrating a Modern Data Pipeline workflow](#the-challenge)
+       * [The One-stop-shop as solution for aforementioned challenges using AWS PaaS](#one-stop-solution)
+       * [Example Implementation: Modern-DataPipeline-workflow](#Modern-DataPipeline-workflow-implementation)
    * [The Next Gen Modern Event Based Serverless Data/Information Supply chain pipeline architecture]
       * [Modeling the ETL orchestration workflow in AWS Step Functions](#Modern-DataPipeline-workflow-in-aws-step-functions)
       * [AWS CloudFormation templates](#aws-cloudformation-templates)
@@ -25,9 +26,7 @@ A quick rundown of Contents
       * [The deploygluescripts build command](#the-deploygluescripts-build-command)
    * [Putting it all together: Example usage of build commands]
  
-  I am also including a implementation of Modern Data Pipeline Workflow. 
  
-   * [Example Implementation: Modern-DataPipeline-workflow](#Modern-DataPipeline-workflow-implementation)
 
 # Introduction| Modern E2E-ServerlessDataPipeline_NxtGenDataLake
 Cloud hosted serverless, self scalable, secured, auto-scaled **"Ingest, Collect, Transform, Load and Workflow orachasteration operations"** collectively form the backbone of any "Modern enterprise federatd Data Lake". A Next Gen Data/Information supply chain workflow typically reads data from one or more data sources, applies various transformations to the data, and then writes the results to a target where data is ready for consumption/ actionalable insights. But it's different vis-a-vis the traditional big data analytics pipeline in following manneer, as it offers
@@ -35,7 +34,7 @@ Cloud hosted serverless, self scalable, secured, auto-scaled **"Ingest, Collect,
 	* Modern 'Event Based', 'Serverless', 'Self scalable', 'Secured', 'Cloud Native', 'Trusted', Metadat driven Data/Information Supply chain pipeline architecture
 	* One stop solution for all the challenges of orchestrating a Modern Data Pipeline workflow
 
-
+<a name="the-challenge"></a>
 ### The challenge of orchestrating a Modern Data Pipeline workflow
 
  - How can we **orchestrate an ETL workflow** that involves a **"diverse set of ETL technologies"**? Such as 
@@ -109,7 +108,7 @@ Cloud hosted serverless, self scalable, secured, auto-scaled **"Ingest, Collect,
 		 
 		 --- Right to forget, right to access, .. (GDPR/CCPA compliance)
  
-
+<a name="one-stop-solution"></a>
 ### The One-stop-shop as solution for aforementioned challenges using AWS PaaS
 
 In this code sample, following AWS PaaS services are chained together to serve the One-stop-shop solution:
@@ -127,7 +126,51 @@ In this code sample, following AWS PaaS services are chained together to serve t
 
 [Amazon Athena](https://docs.aws.amazon.com/athena/latest/ug/what-is.html).
 
+<a name="Modern-DataPipeline-workflow-implementation"></a>
+### Example Implementation - Modern Data Pipeline Workflow implementation 
+I am also including an illustrative/sample implementation of Modern Data Pipeline Workflow.
+Details of this implementation are as such -
 
+**Data Sets** 
+2 publicly-available datasets are used for the implementation project:
+
+ - The first dataset is a [sales pipeline dataset](samples/SalesPipeline_QuickSightSample.csv) (Sales dataset) that contains a list of slightly above 20K sales opportunity records for a fictitious business. Each record has fields that specify:
+
+* A date, potentially when an opportunity was identified. 
+* The salesperson’s name. 
+* A market segment to which the opportunity belongs. 
+* Forecasted monthly revenue. 
+
+- The second dataset is an [online marketing metrics dataset](samples/MarketingData_QuickSightSample.csv) (Marketing dataset). The data set contains records of marketing metrics, aggregated by day. The metrics describe user engagement across various channels (website, mobile, and social media) plus other marketing metrics. 
+
+The two data sets are unrelated, but we’ll assume that they are for the purpose of this implementation. 
+
+**Biz Use Case: **
+
+Imagine there’s a business user who needs to answer questions based on both datasets. Perhaps the user wants to explore the correlations between online user engagement metrics on the one hand, and forecasted sales revenue and opportunities generated on the other hand. The user engagement metrics include website visits, mobile users, and desktop users.
+
+**The steps in the ETL flow chart are: **
+
+1. **Process the Sales dataset. (PSD)** Read Sales dataset. Group records by day, aggregating the Forecasted Monthly Revenue field. Rename fields to replace white space with underscores. Output the intermediary results to Amazon S3 in compressed Parquet format. Overwrite any previous outputs. 
+
+2. **Process the Marketing dataset. (PMD)** Read Marketing dataset. Rename fields to replace white space with underscores. Output the intermediary results to Amazon S3 in compressed Parquet format. Overwrite any previous outputs. 
+
+3. **Join Sales and Marketing datasets. (JSMD)** Read outputs of processing Sales and Marketing datasets. Perform an inner join of both datasets on the date field. Sort in ascending order by date. Output final joined dataset to Amazon S3, overwriting any previous outputs. 
+Solution Architecture
+
+**Constraints in Workflow Orachesteration**
+So far, this ETL workflow can be implemented with AWS Glue, with the ETL jobs being chained by using job triggers. 
+
+But, there are other requirements outside of AWS Glue that are part of our end-to-end data processing workflow, such as the following:
+
+* Both Sales and Marketing datasets are uploaded to an S3 bucket at random times in an interval of up to a week. The PSD and PMD jobs should start as soon as the Sales dataset file is uploaded. Parallel ETL jobs can start and finish anytime, but the final JMSD job can start only after all parallel ETL jobs are complete.
+* In addition to PSD and PMD jobs, the orchestration must support more parallel ETL jobs in the future that contribute to the final dataset aggregated by the JMSD job. The additional ETL jobs could be managed by AWS services, such as AWS Database Migration Service, Amazon EMR, Amazon Athena or other non-AWS services.
+
+
+The data engineer takes these requirements and builds the following ETL workflow chart.
+![Example ETL Flow](resources/example-etl-flow.png)
+
+<a name="the-etl-orchestration-architecture-and-events"></a>
 
 # The Next Gen Modern Event Based Serverless Data/Information Supply chain pipeline architecture
 Let’s see how we can orchestrate such an ETL flow with AWS Step Functions, AWS Glue, and AWS Lambda. The following diagram shows the ETL orchestration architecture in action.
@@ -571,43 +614,4 @@ If you have setup and run the sample correctly, you should see this output in th
 This indicates that all jobs have been run and orchestrated successfully.
 
 
-<a name="Modern-DataPipeline-workflow-implementation"></a>
-# Example Implementation - Modern Data Pipeline Workflow implementation 
 
-**2 publicly-available datasets are used for the implementation project:**
-
- - The first dataset is a [sales pipeline dataset](samples/SalesPipeline_QuickSightSample.csv) (Sales dataset) that contains a list of slightly above 20K sales opportunity records for a fictitious business. Each record has fields that specify:
-
-* A date, potentially when an opportunity was identified. 
-* The salesperson’s name. 
-* A market segment to which the opportunity belongs. 
-* Forecasted monthly revenue. 
-
-- The second dataset is an [online marketing metrics dataset](samples/MarketingData_QuickSightSample.csv) (Marketing dataset). The data set contains records of marketing metrics, aggregated by day. The metrics describe user engagement across various channels (website, mobile, and social media) plus other marketing metrics. 
-
-The two data sets are unrelated, but we’ll assume that they are for the purpose of this implementation. 
-
-**Biz Use Case: ** 
-Imagine there’s a business user who needs to answer questions based on both datasets. Perhaps the user wants to explore the correlations between online user engagement metrics on the one hand, and forecasted sales revenue and opportunities generated on the other hand. The user engagement metrics include website visits, mobile users, and desktop users.
-
-**The steps in the ETL flow chart are: **
-
-1. **Process the Sales dataset. (PSD)** Read Sales dataset. Group records by day, aggregating the Forecasted Monthly Revenue field. Rename fields to replace white space with underscores. Output the intermediary results to Amazon S3 in compressed Parquet format. Overwrite any previous outputs. 
-
-2. **Process the Marketing dataset. (PMD)** Read Marketing dataset. Rename fields to replace white space with underscores. Output the intermediary results to Amazon S3 in compressed Parquet format. Overwrite any previous outputs. 
-
-3. **Join Sales and Marketing datasets. (JSMD)** Read outputs of processing Sales and Marketing datasets. Perform an inner join of both datasets on the date field. Sort in ascending order by date. Output final joined dataset to Amazon S3, overwriting any previous outputs. 
-Solution Architecture
-
-So far, this ETL workflow can be implemented with AWS Glue, with the ETL jobs being chained by using job triggers. 
-
-But, there are other requirements outside of AWS Glue that are part of our end-to-end data processing workflow, such as the following:
-
-* Both Sales and Marketing datasets are uploaded to an S3 bucket at random times in an interval of up to a week. The PSD and PMD jobs should start as soon as the Sales dataset file is uploaded. Parallel ETL jobs can start and finish anytime, but the final JMSD job can start only after all parallel ETL jobs are complete.
-* In addition to PSD and PMD jobs, the orchestration must support more parallel ETL jobs in the future that contribute to the final dataset aggregated by the JMSD job. The additional ETL jobs could be managed by AWS services, such as AWS Database Migration Service, Amazon EMR, Amazon Athena or other non-AWS services.
-
-
-The data engineer takes these requirements and builds the following ETL workflow chart.
-![Example ETL Flow](resources/example-etl-flow.png)
-
-<a name="the-etl-orchestration-architecture-and-events"></a>
