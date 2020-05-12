@@ -47,11 +47,8 @@ Cloud hosted serverless, self scalable, secured, auto-scaled **"Ingest, Collect,
 	* API based ingestion
 	
 		---- RESTful API/ OData API
-		
 		---- Python/ JAVA/ other language based API
-		
 		---- CCTV WebRTC or RTSP 
-		
 		---- SMB/FTP/SFTP
 		
 	* Event based ingestion
