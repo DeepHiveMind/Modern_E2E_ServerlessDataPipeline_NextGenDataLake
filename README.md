@@ -131,7 +131,8 @@ In this code sample, following AWS PaaS services are chained together to serve t
 I am also including an illustrative/sample implementation of Modern Data Pipeline Workflow.
 Details of this implementation are as such -
 
-**Data Sets** 
+**Data Sets **
+
 2 publicly-available datasets are used for the implementation project:
 
  - The first dataset is a [sales pipeline dataset](samples/SalesPipeline_QuickSightSample.csv) (Sales dataset) that contains a list of slightly above 20K sales opportunity records for a fictitious business. Each record has fields that specify:
@@ -146,6 +147,7 @@ Details of this implementation are as such -
 The two data sets are unrelated, but we’ll assume that they are for the purpose of this implementation. 
 
 **Biz Use Case: **
+
 
 Imagine there’s a business user who needs to answer questions based on both datasets. Perhaps the user wants to explore the correlations between online user engagement metrics on the one hand, and forecasted sales revenue and opportunities generated on the other hand. The user engagement metrics include website visits, mobile users, and desktop users.
 
