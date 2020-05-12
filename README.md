@@ -43,12 +43,12 @@ Cloud hosted "Ingest, Collect, Transform, Load and Workflow orachasteration oper
 	 
 	 * and other services support Log groups in Amazon CloudWatch Logs, [Amazon CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html), which we could use to chain ETL jobs together. 
  
- - How can we support various types of Ingestion & collection mechanisms? Such as
-	-- API based ingestion
-		---- RESTful API/ OData API
-		---- Python/ JAVA/ other language based API
-		---- CCTV WebRTC or RTSP feeds
-		---- SMB/FTP/SFTP
+ - How can we support **various types of Ingestion & collection** mechanisms? Such as
+	* API based ingestion
+		** RESTful API/ OData API
+		** Python/ JAVA/ other language based API
+		** CCTV WebRTC or RTSP feeds
+		** SMB/FTP/SFTP
 	-- Event based ingestion
 		---- telemetry data ingestion
 		---- IIoT protocols (MQTT/CoAP/
@@ -58,11 +58,11 @@ Cloud hosted "Ingest, Collect, Transform, Load and Workflow orachasteration oper
 		
  
  - How to **chain multiple ETL jobs** together? Such as 
-	-- Staructured Streaming (Event based processing) ETL jobs
-	-- Streaming Processing (Near real time processing) ETL jobs
-	-- Batch Processing ETL jobs
-	-- CDC processing ETL jobs
-	-- CEP processing ETL jobs
+	* Staructured Streaming (Event based processing) ETL jobs
+	* Streaming Processing (Near real time processing) ETL jobs
+	* Batch Processing ETL jobs
+	* CDC processing ETL jobs
+	* CEP processing ETL jobs
 
   - How do we inject the **Data Trust** elements (make the data actionable | avoiding Data Swamp | Death Valley) in Data Pipeline? Such as 
 		--- Data Discovery / Schema registry
