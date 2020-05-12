@@ -574,27 +574,34 @@ This indicates that all jobs have been run and orchestrated successfully.
 <a name="Modern-DataPipeline-workflow-implementation"></a>
 # Example Implementation - Modern Data Pipeline Workflow implementation 
 
-For our example, we'll use two publicly-available [Amazon QuickSight](https://docs.aws.amazon.com/quicksight/latest/user/welcome.html) datasets. The first dataset is a [sales pipeline dataset](samples/SalesPipeline_QuickSightSample.csv) (Sales dataset) that contains a list of slightly above 20K sales opportunity records for a fictitious business. Each record has fields that specify:
+**2 publicly-available datasets are used for the implementation project:**
+
+ - The first dataset is a [sales pipeline dataset](samples/SalesPipeline_QuickSightSample.csv) (Sales dataset) that contains a list of slightly above 20K sales opportunity records for a fictitious business. Each record has fields that specify:
 
 * A date, potentially when an opportunity was identified. 
 * The salesperson’s name. 
 * A market segment to which the opportunity belongs. 
 * Forecasted monthly revenue. 
 
-The second dataset is an [online marketing metrics dataset](samples/MarketingData_QuickSightSample.csv) (Marketing dataset). The data set contains records of marketing metrics, aggregated by day. The metrics describe user engagement across various channels (website, mobile, and social media) plus other marketing metrics. The two data sets are unrelated, but we’ll assume that they are for the purpose of this example. 
+- The second dataset is an [online marketing metrics dataset](samples/MarketingData_QuickSightSample.csv) (Marketing dataset). The data set contains records of marketing metrics, aggregated by day. The metrics describe user engagement across various channels (website, mobile, and social media) plus other marketing metrics. 
 
+The two data sets are unrelated, but we’ll assume that they are for the purpose of this implementation. 
+
+**Biz Use Case: ** 
 Imagine there’s a business user who needs to answer questions based on both datasets. Perhaps the user wants to explore the correlations between online user engagement metrics on the one hand, and forecasted sales revenue and opportunities generated on the other hand. The user engagement metrics include website visits, mobile users, and desktop users.
 
-The steps in the ETL flow chart are: 
+**The steps in the ETL flow chart are: **
 
-1. **Process the Sales dataset.** Read Sales dataset. Group records by day, aggregating the Forecasted Monthly Revenue field. Rename fields to replace white space with underscores. Output the intermediary results to Amazon S3 in compressed Parquet format. Overwrite any previous outputs. 
+1. **Process the Sales dataset. (PSD)** Read Sales dataset. Group records by day, aggregating the Forecasted Monthly Revenue field. Rename fields to replace white space with underscores. Output the intermediary results to Amazon S3 in compressed Parquet format. Overwrite any previous outputs. 
 
-2. **Process the Marketing dataset.** Read Marketing dataset. Rename fields to replace white space with underscores. Output the intermediary results to Amazon S3 in compressed Parquet format. Overwrite any previous outputs. 
+2. **Process the Marketing dataset. (PMD)** Read Marketing dataset. Rename fields to replace white space with underscores. Output the intermediary results to Amazon S3 in compressed Parquet format. Overwrite any previous outputs. 
 
-3. **Join Sales and Marketing datasets.** Read outputs of processing Sales and Marketing datasets. Perform an inner join of both datasets on the date field. Sort in ascending order by date. Output final joined dataset to Amazon S3, overwriting any previous outputs. 
+3. **Join Sales and Marketing datasets. (JSMD)** Read outputs of processing Sales and Marketing datasets. Perform an inner join of both datasets on the date field. Sort in ascending order by date. Output final joined dataset to Amazon S3, overwriting any previous outputs. 
 Solution Architecture
 
-So far, this ETL workflow can be implemented with AWS Glue, with the ETL jobs being chained by using job triggers. But you might have other requirements outside of AWS Glue that are part of your end-to-end data processing workflow, such as the following:
+So far, this ETL workflow can be implemented with AWS Glue, with the ETL jobs being chained by using job triggers. 
+
+But, there are other requirements outside of AWS Glue that are part of our end-to-end data processing workflow, such as the following:
 
 * Both Sales and Marketing datasets are uploaded to an S3 bucket at random times in an interval of up to a week. The PSD and PMD jobs should start as soon as the Sales dataset file is uploaded. Parallel ETL jobs can start and finish anytime, but the final JMSD job can start only after all parallel ETL jobs are complete.
 * In addition to PSD and PMD jobs, the orchestration must support more parallel ETL jobs in the future that contribute to the final dataset aggregated by the JMSD job. The additional ETL jobs could be managed by AWS services, such as AWS Database Migration Service, Amazon EMR, Amazon Athena or other non-AWS services.
