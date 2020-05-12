@@ -146,12 +146,11 @@ Details of this implementation are as such -
 
 The two data sets are unrelated, but we’ll assume that they are for the purpose of this implementation. 
 
-**Biz Use Case: **
-
+**Biz Use Case **
 
 Imagine there’s a business user who needs to answer questions based on both datasets. Perhaps the user wants to explore the correlations between online user engagement metrics on the one hand, and forecasted sales revenue and opportunities generated on the other hand. The user engagement metrics include website visits, mobile users, and desktop users.
 
-**The steps in the ETL flow chart are: **
+**The steps in the ETL flow chart are **
 
 1. **Process the Sales dataset. (PSD)** Read Sales dataset. Group records by day, aggregating the Forecasted Monthly Revenue field. Rename fields to replace white space with underscores. Output the intermediary results to Amazon S3 in compressed Parquet format. Overwrite any previous outputs. 
 
@@ -161,9 +160,8 @@ Imagine there’s a business user who needs to answer questions based on both da
 Solution Architecture
 
 **Constraints in Workflow Orachesteration**
-So far, this ETL workflow can be implemented with AWS Glue, with the ETL jobs being chained by using job triggers. 
 
-But, there are other requirements outside of AWS Glue that are part of our end-to-end data processing workflow, such as the following:
+So far, this ETL workflow can be implemented with AWS Glue, with the ETL jobs being chained by using job triggers. But, there are other requirements outside of AWS Glue that are part of our end-to-end data processing workflow, such as the following:
 
 * Both Sales and Marketing datasets are uploaded to an S3 bucket at random times in an interval of up to a week. The PSD and PMD jobs should start as soon as the Sales dataset file is uploaded. Parallel ETL jobs can start and finish anytime, but the final JMSD job can start only after all parallel ETL jobs are complete.
 * In addition to PSD and PMD jobs, the orchestration must support more parallel ETL jobs in the future that contribute to the final dataset aggregated by the JMSD job. The additional ETL jobs could be managed by AWS services, such as AWS Database Migration Service, Amazon EMR, Amazon Athena or other non-AWS services.
