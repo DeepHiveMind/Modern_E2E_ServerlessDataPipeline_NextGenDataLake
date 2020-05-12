@@ -2,36 +2,34 @@ A quick rundown of Contents
 ===========================
 
    * [Introduction- Modern E2E-ServerlessDataPipeline_NxtGenDataLake]
-   * [The challenge of orchestrating a Modern Data Pipeline workflow](#The challenge of orchestrating a Modern Data Pipeline workflow)
-   * [The Next Gen Modern Event Based Serverless Data/Information Supply chain pipeline architecture](#the-Modernetl-orchestration-architecture-and-events)
+   * [The challenge of orchestrating a Modern Data Pipeline workflow]
+   * [The Next Gen Modern Event Based Serverless Data/Information Supply chain pipeline architecture]
       * [Modeling the ETL orchestration workflow in AWS Step Functions](#Modern-DataPipeline-workflow-in-aws-step-functions)
       * [AWS CloudFormation templates](#aws-cloudformation-templates)
       * [Handling failed ETL jobs](#handling-failed-etl-jobs)
-   * [Example ETL workflow requirements](#example-etl-workflow-requirements)
-   * [Preparing your development environment](#preparing-your-development-environment)
-   * [Configuring the project](#configuring-the-project)
+   * [Example ETL workflow requirements]
+   * [Preparing your development environment]
+   * [Configuring the project]
       * [cloudformation/gluerunner-lambda-params.json](#cloudformationgluerunner-lambda-paramsjson)
       * [cloudformation/athenarunner-lambda-params.json](#cloudformationathenarunner-lambda-paramsjson)
       * [lambda/s3-deployment-descriptor.json](#lambdas3-deployment-descriptorjson)
       * [cloudformation/glue-resources-params.json](#cloudformationglue-resources-paramsjson)
       * [lambda/gluerunner/gluerunner-config.json](#lambdagluerunnergluerunner-configjson)
       * [cloudformation/step-functions-resources-params.json](#cloudformationstep-functions-resources-paramsjson)
-   * [Build commands](#build-commands)
+   * [Build commands]
       * [The packagelambda build command](#the-packagelambda-build-command)
       * [The deploylambda build command](#the-deploylambda-build-command)
       * [The createstack build command](#the-createstack-build-command)
       * [The updatestack build command](#the-updatestack-build-command)
       * [The deletestack build command](#the-deletestack-build-command)
       * [The deploygluescripts build command](#the-deploygluescripts-build-command)
-   * [Putting it all together: Example usage of build commands](#putting-it-all-together-example-usage-of-build-commands)
-   * [License](#license)
+   * [Putting it all together: Example usage of build commands]
+  
 
-
-<a name="introduction"></a>
 # Introduction
 Cloud hosted "Ingest, Collect, Transform, Load and Workflow orachasteration operations" collectively form the backbone of any "Modern enterprise data lake". It transforms raw data into useful datasets and, ultimately, into actionable insight. An Data/Information supply chain job typically reads data from one or more data sources, applies various transformations to the data, and then writes the results to a target where data is ready for consumption. 
 
-<a name="The challenge of orchestrating a Modern Data Pipeline workflow"></a>
+
 # The challenge of orchestrating a Modern Data Pipeline workflow
 
  - How can we **orchestrate an ETL workflow** that involves a **"diverse set of ETL technologies"**? Such as 
@@ -107,7 +105,6 @@ In this code sample, I show you how to use [AWS Step Functions](https://docs.aws
 AWS offers [AWS Glue](https://aws.amazon.com/glue/), which is a service that helps author and deploy ETL jobs. AWS Glue is a fully managed extract, transform, and load service that makes it easy for customers to prepare and load their data for analytics. Other AWS Services also can be used to implement and manage ETL jobs. They include: [AWS Database Migration Service](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html) (AWS DMS), [Amazon EMR](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html) (using the Steps API), and even [Amazon Athena](https://docs.aws.amazon.com/athena/latest/ug/what-is.html).
 
 
-<a name="example-etl-workflow-requirements"></a>
 
 # The Next Gen Modern Event Based Serverless Data/Information Supply chain pipeline architecture
 Let’s see how we can orchestrate such an ETL flow with AWS Step Functions, AWS Glue, and AWS Lambda. The following diagram shows the ETL orchestration architecture in action.
@@ -155,7 +152,7 @@ What if a job in the ETL workflow fails? In such a case, there are error-handlin
 > NOTE: To make this code sample easier to setup and execute, build scripts and commands are included to help you with common tasks such as creating the above AWS CloudFormation stacks in your account. Proceed below to learn how to setup and run this example orchestrated ETL flow.
 
 
-<a name="preparing-your-development-environment"></a>
+
 # Preparing your development environment
 Here’s a high-level checklist of what you need to do to setup your development environment.
 
@@ -180,7 +177,7 @@ Here’s a high-level checklist of what you need to do to setup your development
 
 6. Use Pip to install [Pynt](https://github.com/rags/pynt). Pynt is used for the project's Python-based build scripts.
 
-<a name="configuring-the-project"></a>
+
 # Configuring the project
 
 This section list configuration files, parameters within them, and parameter default values. The build commands (detailed later) and CloudFormation templates extract their parameters from these files. Also, the  Glue Runner AWS Lambda function extract parameters at runtime from `gluerunner-config.json`.
@@ -390,7 +387,7 @@ Both parameters are also used by AWS CloudFormation during stack creation.
 
 * `DataBucketName` - The Amazon S3 bucket name (without the `s3://...` prefix).  All OnS3ObjectCreated CloudWatch Events will for the bucket be handled by the `ons3objectcreated` AWS Lambda function. **This bucket will be created by CloudFormation. CloudFormation stack creation will fail if the bucket already exists.**
 
-<a name="build-commands"></a>
+
 # Build commands
 Common interactions with the project have been simplified for you. Using `pynt`, the following tasks are automated with simple commands: 
 
@@ -503,7 +500,7 @@ You can issue the `deploygluescripts` command as follows.
 pynt deploygluescripts
 ```
 
-<a name="putting-it-all-together-example-usage-of-build-commands"></a>
+
 # Putting it all together: Example usage of build commands
 
 
@@ -550,7 +547,6 @@ If you have setup and run the sample correctly, you should see this output in th
 
 This indicates that all jobs have been run and orchestrated successfully.
 
-<a name="license"></a>
 
 # Example ETL workflow requirements
 
