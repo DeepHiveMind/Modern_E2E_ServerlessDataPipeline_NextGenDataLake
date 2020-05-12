@@ -27,7 +27,7 @@ A quick rundown of Contents
  
   I am also including a implementation of Modern Data Pipeline Workflow. 
  
-    * [Example Implementation: Modern-DataPipeline-workflow](#Modern-DataPipeline-workflow-implementation)
+   * [Example Implementation: Modern-DataPipeline-workflow](#Modern-DataPipeline-workflow-implementation)
 
 # Introduction| Modern E2E-ServerlessDataPipeline_NxtGenDataLake
 Cloud hosted serverless, self scalable, secured, auto-scaled **"Ingest, Collect, Transform, Load and Workflow orachasteration operations"** collectively form the backbone of any "Modern enterprise federatd Data Lake". A Next Gen Data/Information supply chain workflow typically reads data from one or more data sources, applies various transformations to the data, and then writes the results to a target where data is ready for consumption/ actionalable insights. But it's different vis-a-vis the traditional big data analytics pipeline in following manneer, as it offers
