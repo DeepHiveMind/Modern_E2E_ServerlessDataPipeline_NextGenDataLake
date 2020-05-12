@@ -92,10 +92,15 @@ Cloud hosted serverless, self scalable, secured, auto-scaled **"Ingest, Collect,
 	* security
 	
 		 --- Data security @ transit
+		 
 		 --- Data security @ rest
+		 
 		 --- Data RBAC/ ABAC in Synch with FiDM (Federated identity management)
+		 
 		 --- Data tokenization (PCI/DSS compliance)
+		 
 		 --- Data Masking
+		 
 		 --- Right to forget, right to access, .. (GDPR/CCPA compliance)
  
 
