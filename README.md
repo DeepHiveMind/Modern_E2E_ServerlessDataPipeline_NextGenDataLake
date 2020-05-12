@@ -29,16 +29,19 @@ A quick rundown of Contents
 
 <a name="introduction"></a>
 # Introduction
-Ingest, Collect, Transform, Load and Workflow orachasteration operations collectively form the backbone of any "Modern enterprise data lake". It transforms raw data into useful datasets and, ultimately, into actionable insight. An Data/Information supply chain job typically reads data from one or more data sources, applies various transformations to the data, and then writes the results to a target where data is ready for consumption. 
+Cloud hosted "Ingest, Collect, Transform, Load and Workflow orachasteration operations" collectively form the backbone of any "Modern enterprise data lake". It transforms raw data into useful datasets and, ultimately, into actionable insight. An Data/Information supply chain job typically reads data from one or more data sources, applies various transformations to the data, and then writes the results to a target where data is ready for consumption. 
 
 <a name="The challenge of orchestrating a Modern Data Pipeline workflow"></a>
 # The challenge of orchestrating a Modern Data Pipeline workflow
 
- -	How can we **orchestrate an ETL workflow** that involves a **"diverse set of ETL technologies"**? Such as 
-	 -- AWS Glue, AWS DMS, Amazon EMR, 
-	 -- AWS Lamda, AWS Step Functions state machines, 
-	 -- Streams in Amazon Kinesis Data Streams, Delivery streams in Amazon Kinesis Data Firehose,
-	 -- and other services support Log groups in Amazon CloudWatch Logs, [Amazon CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html), which we could use to chain ETL jobs together. 
+ - How can we **orchestrate an ETL workflow** that involves a **"diverse set of ETL technologies"**? Such as 
+	 * AWS Glue, AWS DMS, Amazon EMR, 
+	 
+	 * AWS Lamda, AWS Step Functions state machines, 
+	 
+	 * Streams in Amazon Kinesis Data Streams, Delivery streams in Amazon Kinesis Data Firehose,
+	 
+	 * and other services support Log groups in Amazon CloudWatch Logs, [Amazon CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html), which we could use to chain ETL jobs together. 
  
  - How can we support various types of Ingestion & collection mechanisms? Such as
 	-- API based ingestion
@@ -61,7 +64,7 @@ Ingest, Collect, Transform, Load and Workflow orachasteration operations collect
 	-- CDC processing ETL jobs
 	-- CEP processing ETL jobs
 
-  - How do we inject the **Data Trust** elements in Data Pipeline? Such as 
+  - How do we inject the **Data Trust** elements (make the data actionable | avoiding Data Swamp | Death Valley) in Data Pipeline? Such as 
 		--- Data Discovery / Schema registry
 		--- Data Lineage, 
 		--- Data Catalogue, 
