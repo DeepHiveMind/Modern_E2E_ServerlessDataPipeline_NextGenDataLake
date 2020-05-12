@@ -1,0 +1,18 @@
+[
+  {
+    "ParameterKey": "ArtifactBucketName",
+    "ParameterValue": "<NO-DEFAULT>"
+  },
+  {
+    "ParameterKey": "ETLScriptsPrefix",
+    "ParameterValue": "scripts"
+  },
+  {
+    "ParameterKey": "DataBucketName",
+    "ParameterValue": "<NO-DEFAULT>"
+  },
+  {
+    "ParameterKey": "ETLOutputPrefix",
+    "ParameterValue": "output"
+  }
+]
