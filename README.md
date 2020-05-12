@@ -1,7 +1,7 @@
 A quick rundown of Contents
 ===========================
 
-   * [Introduction- Modern E2E-ServerlessDataPipeline_NxtGenDataLake]
+   * [Introduction | Modern E2E-ServerlessDataPipeline_NxtGenDataLake]
    * [The challenge of orchestrating a Modern Data Pipeline workflow]
    * [The Next Gen Modern Event Based Serverless Data/Information Supply chain pipeline architecture]
       * [Modeling the ETL orchestration workflow in AWS Step Functions](#Modern-DataPipeline-workflow-in-aws-step-functions)
@@ -26,7 +26,7 @@ A quick rundown of Contents
    * [Putting it all together: Example usage of build commands]
   
 
-# Introduction - Modern E2E-ServerlessDataPipeline_NxtGenDataLake
+# Introduction| Modern E2E-ServerlessDataPipeline_NxtGenDataLake
 Cloud hosted serverless, self scalable, secured, auto-scaled **"Ingest, Collect, Transform, Load and Workflow orachasteration operations"** collectively form the backbone of any "Modern enterprise federatd Data Lake". It transforms raw data into useful datasets and, ultimately, into actionable insight. An Data/Information supply chain job typically reads data from one or more data sources, applies various transformations to the data, and then writes the results to a target where data is ready for consumption. 
 
 
